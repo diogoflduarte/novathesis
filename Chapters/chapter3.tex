@@ -3,372 +3,146 @@
 %% chapter3.tex
 %% NOVA thesis document file
 %%
-%% Chapter with a short latex tutorial and examples
+%% Chapter with lots of dummy text
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \typeout{NT FILE chapter3.tex}%
+\label{cha:neurobehav}
 
-\makeatletter
-\newcommand{\ntifpkgloaded}{%
-  \@ifpackageloaded%
-}
-\makeatother
+% (fold)
+\newcommandx{\obs}[2][1=]{\todo[linecolor=lightgray,backgroundcolor=lightgray,bordercolor=white,#1]{#2}}
+\NewDocumentCommand{\dummyref}{m}{\textcolor{red}{#1}}
+% (end)
 
+\chapter{Non-linear mixed representations improve behavioral readouts} 
+% Decoding behavior from Purkinje-cells suggests non linear (...) 
 
-\chapter{A Short \LaTeX\ Tutorial with Examples}
-\label{cha:a_short_latex_tutorial_with_examples}
+\pagebreak
 
-This Chapter aims at exemplifying how to do common stuff with \LaTeX. We also show some stuff which is not that common! ;)
-
-Please, use these examples as a starting point, but you should always consider using the \emph{Big Oracle} (aka, \href{http://www.google.com}{Google}, your best friend) to search for additional information or al-ternative ways for achieving similar results.
-
-\section{Document Structure} % (fold)
-\label{sec:document_structure}
-
-% section document_structure (end)
+\section{Abstract}
+\section{Introduction}
 
 
-\section{Dealing with Bibliography} % (fold)
-\label{sec:dealing_with_bibliography}
+\begin{compactitem}
+    \scriptsize
+    \item Purkinje cells are required for coordination
+    \item Purkinje cell simple spike rate encodes kinematics and position
+    \item Population providing readouts (DCN convergence + Shadmehr)
+    \item Recent mixed selectivity proposes efficient encoding schema
+\end{compactitem}
 
-Citing something online~\cite{wiki:shuntingyard,flex,bison}.
+\vspace{10pt}
 
-% section dealing_with_bibliography (end)
-
-
-\section{Inserting Tables} % (fold)
-\label{sec:inserting_tables}
-
-% section inserting_tables (end)
-
-
-\section{Importing Images} % (fold)
-\label{sec:importing_images}
-
-% section importing_images (end)
+Mostly from histology and circuit characterization, the cerebellum has been proposed as a structure involved in learning. Purkinje cells are considered to be the main computational unit of the cerebellum as a learning machine, a framework known as the Albus-Marr-Ito hypothesis (\textcolor{red}{Ito?}). 
+\obs{This should be in chapter 1 (intro)}
 
 
-\section{Floats, Figures and Captions} % (fold)
-\label{sec:floats_figures_and_captions}
+During locomotion, strides of all limbs need to be timed correctly to maintain stability, and any internal or external motor errors have to be flexibly compensated for. I am defining internal and external errors as the source of unexpected movements: internal errors would arise from motor noise, and external refer to any unexpected change in the environment (\textcolor{red}{ref wolpert kawato}). 
 
-% \subsection{Inserting Figures Wrapped with text} % (fold)
-% \label{ssec:inserting_images_wrapped_with_text}
-%
-% You should only use this feature is \emph{really} necessary. This means, you have a very small image, that will look lonely just with text above and below.
-%
-% In this case, you must use the \verb!wrapfigure! package.  To use \verb!wrapfig!, you must first add this to the preamble:
-%
-% \begin{wrapfigure}{l}{2.5cm}
-%   \centering
-%     \includegraphics[width=2cm]{snowman-vectorial}
-%   \caption{A snow-man}
-% \end{wrapfigure}
-%
-% \noindent\verb!\usepackage{wrapfig}!\\
-% This then gives you access to:\\
-% \verb!\begin{wrapfigure}[lineheight]{alignment}{width}!\\
-% Alignment can normally be either ``l'' for left, or ``r'' for right. Lowercase ``l'' or ``r'' forces the figure to start precisely where specified (and may cause it to run over page breaks), while capital ``L'' or ``R'' allows the figure to float. If you defined your document as twosided, the alignment can also be ``i'' for inside or ``o'' for outside, as well as ``I'' or ``O''. The width is obviously the width of the figure. The example above was introduced with:
-% \lstset{language=TeX, morekeywords={\begin,\includegraphics,\caption}, caption=Wrapfig Example, label=lst:latex_example}
-% \begin{lstlisting}
-%   \begin{wrapfigure}{l}{2.5cm}
-%     \centering
-%       \includegraphics[width=2cm]{snowman-vectorial}
-%     \caption{A snow-man}
-%   \end{wrapfigure}
-% \end{lstlisting}
+Cerebellar lesions are known for resulting in movement ataxia, in which humans or animals' capability to produce well-timed, coordinated movements is impaired. Loss of function in the cerebellum matches what would be expected if the motor system could no longer estimate the sensorimotor consequences of motor commands (\textcolor{red}{Bastian ref}).
 
-% subsection inserting_images_wrapped_with_text (end)
+More specifically, localized perturbation of Purkinje cells that project to a single cerebellar nucleus results in abolished learning of a locomotor paradigm without completely compromising the animals' ability to walk (\cite{darmohray_spatial_2019}). This and similar findings \textcolor{red}{refs on Purkinje cell transient impairment} are consistent with the idea of Purkinje cells as cerebellar computational units, suggesting that they must process, and therefore encode limb-related signals. \textbf{This raises the question of what signals may the Purkinje cells receive and integrate to achieve coordination between multiple limbs}.
 
-% section floats_figures_and_captions (end)
+Early electrophysiology-based studies have shown that Purkinje cell simple spike rates are modulated during the locomotor cycle in cats (\cite{udoSimpleComplexSpike1981, armstrongDischargesPurkinjeCells1984, smithSensorimotorcorrelatedDischargeRecorded1995}), and are sensitive to position and velocity in rats (\textcolor{red}{refs}) and mice (\textcolor{red}{refs}). 
+Studies in non-human primates have also recorded spikes from Purkinje cell firing during single arm reaching tasks. These cells have been observed to respond to preferred directions, velocities or combinations of both (\textcolor{red}{Coltz Ebner 1999 Monkey}).
 
-\lipsum[1-3]
+By recording multiple neurons separately, studies have shown the variety of neural responses present in Purkinje cells. Tuning functions can be associated with different locomotor events, phase-shifts and can even contain more than one oscillation per locomotor cycle (\dummyref{raman pearson}).
 
-\begin{figure}[htbp]
-  \centering
-  \subbottom[One sub-figure\label{fig:leftsubfig}]{%
-    \includegraphics[width=0.5\linewidth]{knitting-vectorial}}%
-  \subbottom[Another sub-figure\label{fig:rightsubfig}]{%
-    \includegraphics[width=0.5\linewidth]{knitting-vectorial}}%
-  \caption{A figure with two sub-figures!}
-  \label{fig:fig2subfig}
+
+
+% \begin{tcolorbox}[title=Definition: Non-linear responses]
+%     Any non-monotonic response to a parameter, i.e., not accurately described by a straight line (\textcolor{red}{Coltz Ebner 1999 Monkey})
+% \end{tcolorbox}
+
+Moreover, a single DCN neuron receives input from \textcolor{red}{X} Purkinje cells. Given the convergence of Purkinje cells to nucleus neurons, one expects the DCN to perform some sort of readout from Purkinje cell populations. \textbf{Under what conditions could this readout be used for coordination?}
+
+THERE'S A WHOLE PARAGRAPH MISSING ABOUT MIXED SELECTIVITY. WE ALSO NEED MORE INFORMATION ABOUT MOTOR ENCODING IN GENERAL IN PURKINJE CELLS
+
+In this chapter, I describe an approach into studying how non-linear interactions between limbs may be useful for effcient downstream readouts by using a neural decoder method.
+
+
+
+
+
+
+
+
+
+
+
+\section{Results}
+\subsection{Non-linearly mixed neural representations of multiple limbs improve kinematic decoding from pseudo-populations of Purkinje cells}.
+\section{Discussion}
+\section{Methods}
+\subsection{Animal model: wildtype mice}
+\subsection{Behavioral paradigm}
+\subsection{GAM analysis}
+\subsection{Encoder-Decoder approach for hypothesized downstream readouts}
+
+
+% \section{Purkinje cells encode multiple limbs}
+
+Mice move in a coordinated manner where diagonal limb pairs move together. When using traditional approaches such as event rasters, the resulting tuning functions are similar between two pairs of limbs (Figure \ref{fig:behavioral-correlations}).
+\obs{this should be made explicit in the introduction and here should be just a slight reminder}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{Chapters/Figures/chapter3/behavioral_correlations_in_fr.png}
+    \caption{Purkinje cells are modulated by multiple limbs. \textbf{A} Stride phases are extracted from positions for each paw by linearly interpolating between swing and stance events.}
+    \label{fig:behavioral-correlations}
 \end{figure}
 
-\textbf{And this is a small text that references the Figure~\ref{fig:fig2subfig} and its Subfigures~\ref{fig:leftsubfig} and~\ref{fig:rightsubfig}.}
+\par This aspect of locomotion poses a difficulty when isolating paw contributions to firing rate. Two correlated limbs will have similar tuning functions, and they will be in anti-phase relative to the homolateral pair.
 
-\lipsum[1-3]
+% \subsection{GAMs decompose firing rate into limb tuning}
 
+% ...........................................
 
-\section{Text Formatting} % (fold)
-\label{sec:text_formatting}
-
-% section text_formatting (end)
-
-
-\section{Generating PDFs from \LaTeX} % (fold)
-\label{sec:generating_pdfs_from_latex}
-
-\subsection{Generating PDFs with pdflatex} % (fold)
-\label{ssec:generating_pdfs_with_pdflatex}
-
-You may create PDF files either by using \verb!latex! to generate a DVI file, and then use one of the many DVI-2-PDF converters, such as \verb!dvipdfm!.
-
-Alternatively, you may use \verb!pdflatex!, which will immediately generate a PDF with no intermediate DVI or PS files. In some systems, such as Apple, PDF is already the default format for \LaTeX. I strongly recommend you to use this approach, unless you have a very good argument to go for \verb!latex! + \verb!dvipdfm!.
-
-A typical pass for a document with figures, cross-references and a bibliography would be:
-\begin{verbatim}
-$ pdflatex template
-$ bibtex template
-$ pdflatex template
-$ pdflatex template
-\end{verbatim}
-You will notice that there is a new PDF file in the working directory called \verb!template.pdf!. Simple :)
-
-Please note that, to be sure all table of contents, cross-references and bibliographic citations are up-to-date, you must run \verb!latex! once, then \verb!bibtex!, and then \verb!latex! twice.
-% section generating_pdfs_with_pdflatex (end)
-
-\subsection{Dealing with Images} % (fold)
-\label{sub:dealing_with_images}
-
-You may process the same source files with both \verb!latex! or \verb!pdflatex!. But, if your text include images, you must be careful. \verb!latex! and \verb!pdflatex! accept images in different (exclusive) formats.  For \verb!latex! you may use EPS ou PS figures. For \verb!pdflatex! you may use JPG, PNG or PDF figures.  I strongly recommend you to use PDF figures in vectorial format (do not use bitmap images unless you have no other choice).
-% subsection dealing_with_images (end)
+Marques, Ramirez et al.~have recently used generalized additive models (GAMs) as a way to disentangle the contributions of multiple correlated limb signals into their individual contributions \cite{ramirez-buriticaNonlinearMixedEncoding2024}.
+Under this framework, limb phases are extracted from limb positions by linearly interpolating 2 core segments corresponding to swing and stance periods. The continuous phase for each paw is then binned into multiple basis functions (Figure \ref{fig:gam-methods}A).
 
 
-\subsection{Creating Source Files Compatible with both latex and pdflatex} % (fold)
-\label{ssec:creating_source_files_compatible_with_both_latex_and_pdflatex}
-
-Do not include the extension of the file in the \verb!\includegraphics! command. E.g., use\\
-\verb!\includegraphics{sonwman}!\\
-and not\\
-\verb!\includegraphics{sonwman.eps}!.\\
-If you use the first form, \verb!latex! or \verb!pdflatex! will add an appropriate file extension.
-
-This means that, if you plan to use only \verb!pdflatex!, you need only to keep (preferably) a PDF version of all the images. If you plan to use also \verb!latex!, then you also need an EPS version of each image.
-% subsection creating_source_files_compatible_with_both_latex_and_pdflatex (end)
-
-% section generating_pdfs_from_latex (end)
+To account for behavioral confounds metrics like tail angle, wheel speed, and body angle were included in the models. These can be binarized in similar manner to paw phases and included as regressors in a model of the following form: 
 
 
-\newpage
+\begin{gather}
+\label{fig:behavioral-correlations}
+\text{Firing Rate} = \beta_0 + \sum_{i=1}^{N} \sum_{j=1}^{M} \beta_{i,j} \cdot \phi_{i,j} + \epsilon
+\intertext{\indent Where:}
+  \begin{tabular}{l c l}
+    \(\beta_0\)     & : & \(y\) intercept  \\
+    \(N\)           & : & number of behavioral regressors \\
+    \(M\)           & : & number of bins / basis functions \\
+     \(\phi_{i,j}\) & : & basis function for behavioral regression \(i\) bin \(j\) \\
+    \(\beta_{i,j}\) & : & model coefficient for behavioral regression \(i\) bin \(j\) \\
+    \(\epsilon\)    & : & residuals
+  \end{tabular}\nonumber
+\end{gather}
 
-{\Large To be included in the sections above}\\
+and a tuning function is the smoothed collection of \(\beta\) for all \(j\) (\ref{fig:gam-methods}B).
 
-Para fazer citações, deverá usar-se a chave da referência no ficheiro BibTeX. Se for uma única referência~\cite{Artho04}, usar um ``\verb!~!'' para ligar o \verb!\cite{...}! à palavra que o precede (\ldots\verb!referência~\cite{Artho04}!).  Caso queira fazer múltiplas citações~\cite{Shavit95,Silberschatz06,Moss85}, deverá agrupá-las dentro de um úinico \verb!\cite{...}!.
+The outputs of the GAM are the coefficients organized in the phase space of each variable, i.e., partial dependency functions (PDPs), that can be interpreted as tuning functions (Figure \ref{fig:gam-methods}C), as well as the predicted firing rate.
 
-Note que o ficheiro de bibliografia pode ter tantas entradas quantas quiser. Apenas aquelas cuja chave seja referenciada no texto é que serão incluidas na listagem de bibliografia.
-
-
-Footnotes\footnote{This is a simple footnote.} will be numbered and shown in the bottom of the page.
-
-
-A Tabela~\ref{tab:hla:results} ilustra alguns conceitos importantes associados à construção de tabelas:
-\begin{asparaenum}[i)]
-  \item Não usar linhas verticais;
-  \item A legenda deve ficar por cima da tabela;
-  \item Usar as macros \verb!\toprule!, \verb!\midrule! e \verb!\bottomrule! para fazer a linha horizontal superior, interiores e inferior, respectivamente.
-\end{asparaenum}
-
-% \begin{longtblr}[
-%     % presep = 0pt,
-%     caption = {Test results summary.},
-%     label = {tab:hla:results}
-%     % label=none,
-% ]{  colspec = {lccccc},%{Q[l,t,font=\ttfamily]X[j,t]},
-%     rowhead = 1,
-%     rowfoot = 1,
-%     row{odd} = {GhostWhite},
-%     % row{even} = {yellow},
-%     row{1} = {font=\bfseries, l, Schlgray, ht=0.75cm},
-%     row{Z} = {font=\bfseries, Schlgray}
-%     % hline{9} = {dashed},
-%     % col{1} = {font=\bfseries},
-%     % preto{1} = {\verb!},
-%     % appto{1} = {!},
-% }
-\bgroup
-\rowcolors{1}{}{GhostWhite}
-\begin{xltabular}{\textwidth}{Xccccc}
-  \caption{Test results summary.}
-  \label{tab:hla:results}\\
-  \toprule
-  \rowcolor{Gainsboro}%
-  Test   & Anomalies  & Warnings  & Correct   & Categories            & Missed \\
-  \midrule
-Connection~\cite{Beckman08}     & 2       & 2          & 1          & \emph{C}              & 1 \\
-Coordinates'03~\cite{Artho03}   & 1        & 4          & 1          & \emph{2B, 1C}          & 0 \\
-Local Variable~\cite{Artho03}    & 1        & 2          & 1          & \emph{A}              & 0 \\
-NASA~\cite{Artho03}              & 1        & 1          & 1          & ---                    & 0 \\
-Coordinates'04~\cite{Artho04}    & 1        & 4          & 1          & \emph{3C}              & 0 \\
-Buffer~\cite{Artho04}            & 0        & 7          & 0          & \emph{2A, 1B, 2C, 2D}  & 0 \\
-Double-Check~\cite{Artho04}      & 0        & 2          & 0          & \emph{1A, 1B}          & 0 \\
-StringBuffer~\cite{Flanagan04}  & 1        & 0          & 0          & ---                    & 1 \\
-Account~\cite{Praun03}          & 1        & 1          & 1          & ---                   & 0 \\
-Jigsaw~\cite{Praun03}            & 1        & 2          & 1          & \emph{C}              & 0 \\
-Over-reporting~\cite{Praun03}    & 0        & 2          & 0          & \emph{1A, 1C}          & 0 \\
-Under-reporting~\cite{Praun03}  & 1        & 1          & 1          & ---                    & 0 \\
-Allocate Vector~\cite{IBM-Rep}  & 1        & 2          & 1          & \emph{C}              & 0 \\
-Knight Moves~\cite{Beckman08}   & 1        & 3          & 1          & \emph{2B}              & 0 \\
-  \midrule
-  \rowcolor{Gainsboro}%
-Total                            & 12      & 33        & 10        & 5A, 6B, 10C, 2D       & 2 \\
-  \bottomrule
-  \end{xltabular}
-\egroup
-% \end{longtblr}
-
-% \begin{table}[ht]
-%   \caption{Test results summary.}
-%   \label{tab:hla:results}
-% \centering
-% \begin{tabular}{lccccc}
-%   \toprule
-%   \multicolumn{1}{c}{\textbf{Test}}   & \textbf{Anomalies}  & \textbf{Warnings}  & \textbf{Correct}   & \textbf{Categories}    & \textbf{Missed} \\
-%   \midrule
-% \cite{Beckman08}~Connection   & 2 & 2  & 1  & \emph{C}        & 1 \\
-% \cite{Artho03}~Coordinates'03   & 1  & 4  & 1  & \emph{2B, 1C}      & 0 \\
-% \cite{Artho03}~Local Variable  & 1  & 2  & 1  & \emph{A}        & 0 \\
-% \cite{Artho03}~NASA        & 1  & 1  & 1  & ---          & 0 \\
-% \cite{Artho04}~Coordinates'04  & 1  & 4  & 1  & \emph{3C}        & 0 \\
-% \cite{Artho04}~Buffer      & 0  & 7  & 0  & \emph{2A, 1B, 2C, 2D}  & 0 \\
-% \cite{Artho04}~Double-Check    & 0  & 2  & 0  & \emph{1A, 1B}      & 0 \\
-% \cite{Flanagan04}~StringBuffer  & 1  & 0  & 0  & ---          & 1 \\
-% \cite{Praun03}~Account      & 1  & 1  & 1  & ---          & 0 \\
-% \cite{Praun03}~Jigsaw      & 1  & 2  & 1  & \emph{C}        & 0 \\
-% \cite{Praun03}~Over-reporting  & 0  & 2  & 0  & \emph{1A, 1C}      & 0 \\
-% \cite{Praun03}~Under-reporting  & 1  & 1  & 1  & ---          & 0 \\
-% \cite{IBM-Rep}~Allocate Vector  & 1  & 2  & 1  & \emph{C}        & 0 \\
-% Knight Moves          & 1  & 3  & 1  & \emph{2B}        & 0 \\
-%   \midrule
-%   \textbf{Total}      & \textbf{12}    & \textbf{33}    & \textbf{10}      & \textbf{5A, 6B, 10C, 2D}  & \textbf{2} \\
-%   \bottomrule
-% \end{tabular}
-% \end{table}
-
-
-As figuras a inserir no documento deverão ser de qualidade, preferencialmente em formato vectorial (PDF vectorial) e não em \emph{bitmap} (PNG, JPG, etc). As imagens \emph{bitmap} (Figura~\ref{fig:Figuras_Tree_silhouettes-bitmap}) não escalam bem e têm reflexos negatives na qualidade do seu documento.  Pelo contrário, as imagens \emph{vectoriais} {Figura~\ref{fig:Figuras_Tree_silhouettes-vectorial}} escalam muito tanto quanto o necessário sem degradar a qualidade da imagem.
-
-Só deve usar \emph{screenshots} se não tive mesmo nenhuma alternativa.  Em vez e gerar um \emph{screenshot}, tente usar uma impressora virtual PDF e imprimir para um ficheiro PDF. Regra geral obterá um PDF vetorial. Mesmo que o seu PDF contenha imagens, elas terão sempre qualidade maior ou igual à que obteria com um \emph{screenshot}.
-
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[height=1in]{snowman-bitmap}
-  \includegraphics[height=3in]{snowman-bitmap}
-  \includegraphics[height=6in]{snowman-bitmap}
-  \caption{Imagem em formato \emph{bitmap} (JPG)}
-  \label{fig:Figuras_Tree_silhouettes-bitmap}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.9\linewidth]{example-image}
+    \caption{Purkinje cells are modulated by multiple limbs. \textbf{A} Stride phases are extracted from positions for each paw by linearly interpolating between swing and stance events.}
+    \label{fig:gam-methods}
 \end{figure}
 
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[height=1in]{snowman-vectorial}
-  \includegraphics[height=3in]{snowman-vectorial}
-  \includegraphics[height=6in]{snowman-vectorial}
-  \caption{Imagem em formato PDF vectorial}
-  \label{fig:Figuras_Tree_silhouettes-vectorial}
-\end{figure}
+Ramirez et al.~fitted one GAM per recorded Purkinje cell
 
-Para agregar várias figuras numa única… Poderá assim referenciar o conjunto como Figura~\ref{fig:figura-completa} ou as sub-figuras separadamente como~\ref{fig:novelo} e~\ref{fig:nuvem}.
+% \subsection{Emergence of a non-linear component for limb mixing in Purkinje cells}
+
+GAMs also allow specifying non-linear interactions between regressors under the hypothesis that some variance in the firing rate is due to specific combinations of features. In our case, these combinations would occur in a 4 dimensional phase space combined from all paws.
+\par 
 
 
-\begin{figure}[htbp]
-  \centering
-    \subbottom[Novelo de lã]{%
-    \label{fig:novelo}
-    \includegraphics[height=1in]{knitting-vectorial}
-    }
-\qquad\qquad
-    \subbottom[Tempestade com neve]{%
-    \label{fig:nuvem}
-    \includegraphics[height=1in]{snowstorm-vectorial}
-    }
-  \caption{Exemplo de utilização de \emph{subbottom}}
-  \label{fig:figura-completa}
-\end{figure}
 
-\section{Equações}
 
-O LaTeX é uma ferramenta poderosa para escrever em estilo matemático. Permite inserir fórmulas no meio do texto como por exemplo esta: $ax^2 + bx + c = 0$. Também permite que as fórmulas sejam destacadas numa linha separada e centradas na página
-$$x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}$$
-\[x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}\]
-ou numeradas
-\begin{equation}
-aaa
-\label{eq:1}
-\end{equation}
-que depois pode ser referida no texto como sendo a equação~\ref{eq:1}
-$$\begin{array}{l}
-aa
-\end{array}
-$$
 
-\begin{eqnarray}
-a\\
-b\\
-c\\
-\end{eqnarray}
-
-\newif\ifntlistingsloaded
-\ntifpkgloaded{listings}{\ntlistingsloadedtrue}{\ntlistingsloadedfalse}
-\newif\ifntmintedloaded
-\ntifpkgloaded{minted}{\ntmintedloadedtrue}{\ntmintedloadedfalse}
-
-\ifntlistingsloaded
-\section{Test for listings} % (fold)
-\label{sec:test_for_listings}
-
-Testing the package “listings“…
-
-\begin{lstlisting}[caption=cap,label=lst:lab,float=htbp]
-if(a==b)
-  puts("YESS!")
-\end{lstlisting}
-\fi
-
-\ifntmintedloaded
-\section{Test for minted} % (fold)
-\label{sec:test_for_minted}
-
-Testing the package “minted“…
-
-\begin{listing}[H]
-  \begin{minted}{C}
-    if(a==b)
-      puts("YESS!")
-  \end{minted}
-  \caption{Example of a listing.}
-  \label{lst:lab}
-\end{listing}
-\fi
-
-\section{Test for algorithms}
-\label{sec:test_for_algorithms}
-
-Uncomment the algorithms source below and add the following to file “\verb!5_packages.tex!”
-\begin{verbatim}
-  \usepackage{algorithm2e}
-  \RestyleAlgo{ruled}
-\end{verbatim}
-and uncomment
-\begin{verbatim}
-\ntaddlistof{listofalgorithms}
-\end{verbatim}
-in file “\verb!8_list_og.tex!”.
-
-% \begin{algorithm}
-% $i\gets 10$\;
-% \eIf{$i\geq 5$}
-% {
-%     $i\gets i-1$\;
-% }{
-%     \If{$i\leq 3$}
-%     {
-%         $i\gets i+2$\;
-%     }
-% }
-% \caption{This is an algorithm.}
-% \end{algorithm}
-
-% section test_for_listings (end)
-
-% \printbibliography[heading=subbibliography, segment=\therefsegment, title={\bibname\ for chapter~\thechapter}]
-
+% \section{Neural decoding}
+% Describe the concepts behind neural decoding here, mostly from Glaser and Kording.
+% \subsection{Encoding: building pseudo-population firing rates from single-cell recording sessions}
+% \subsection{Decoding: statistical metrics for behavioral readouts}
+% \subsection{Purkinje cell non-linear mixed representations improve behavioral readouts}

@@ -5,7 +5,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \typeout{NT FILE Config/4_files.tex}%
-
 %=============================================================================
 % THE FILES
 %=============================================================================
@@ -39,7 +38,7 @@
 % File with the quote text. Will only be considered for final documents,
 %   i.e., "bsc", "msc" and "phd", otherwise, it will be silently ignored
 %   syntax: \ntaddfile{quote}{filename}
-\ntaddfile{quote}{quote}
+% \ntaddfile{quote}{quote}
 
 %%------------------------------------------------------------
 % Abstract files in multiple languages
@@ -56,9 +55,9 @@
 %%------------------------------------------------------------
 % Lists of Glossary, Acronyms and Symbols
 %   syntax: \ntaddfile{glossaries}[list-type]{filename}
-\ntaddfile{glossaries}[glossary]{glossary}
-\ntaddfile{glossaries}[acronym]{acronyms}
-\ntaddfile{glossaries}[symbols]{symbols}
+% \ntaddfile{glossaries}[glossary]{glossary}
+\ntaddfile{glossaries}[acronym]{acronyms.tex}
+% \ntaddfile{glossaries}[symbols]{symbols}
 % \ntaddfile{glossaries}[symbols]{chemical}
 
 %%------------------------------------------------------------
@@ -71,21 +70,21 @@
 \ntaddfile{chapter}{chapter1}
 \ntaddfile{chapter}{chapter2}
 \ntaddfile{chapter}{chapter3}
-% \ntaddfile{chapter}{chapter4}
-% \ntaddfile{chapter}{chapter-last}
+\ntaddfile{chapter}{chapter4}
+\ntaddfile{chapter}{chapter5}
 
 %%------------------------------------------------------------
 % Text appendices
 % syntax: \ntaddfile{appendix}{filename}
-\ntaddfile{appendix}{appendix1}
-\ntaddfile{appendix}{appendix2}
+% \ntaddfile{appendix}{appendix1}
+% \ntaddfile{appendix}{appendix2}
 
 %%------------------------------------------------------------
 % Text annexes
 % syntax: \ntaddfile{annex}{filename}
-\ntaddfile{annex}{annex1}
+% \ntaddfile{annex}{annex1}
 % \ntaddfile{annex}{annex2}
-% \ntaddfile{annex}{annex2}
+\ntaddfile{annex}{annex2}
 
 %%------------------------------------------------------------
 % User defined cover instead of standard one

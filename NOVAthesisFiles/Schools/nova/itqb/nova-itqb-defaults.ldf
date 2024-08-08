@@ -42,7 +42,9 @@
 
 % Cover background images
 % \thesiscover(phd,1-1,bgcolor):={black}
-% \thesiscover(phd,1-1,textcolor):={white}
+% tag: DD
+\thesiscover(phd,1-1,bgcolor):={darkgray}
+\thesiscover(phd,1-1,textcolor):={white}
 % \thesiscover(phd,2-1,textcolor):={black}
 % \thesiscover(1-1,image):={front}
 % \thesiscover(N-2,image):={back}
