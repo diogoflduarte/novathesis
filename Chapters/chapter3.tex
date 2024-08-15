@@ -20,6 +20,13 @@
 \pagebreak
 
 \section{Abstract}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                           %%
+%%                           INTRODUCTION                                    %%
+%%                                                                           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}
 
 
@@ -33,76 +40,144 @@
 
 \vspace{10pt}
 
-Based on histological and circuit characterization studies, the cerebellum is proposed to be a key structure involved in learning. Within this framework, Purkinje cells are regarded as the primary computational units of the cerebellum, forming the foundation of the Albus-Marr-Ito hypothesis (\dummyref{Ito?}).
+Based on histological and circuit characterization studies, the cerebellum is proposed to be a key structure involved in learning. Within this framework, Purkinje cells are regarded as the primary computational units of the cerebellum.
 \obs{This should be in chapter 1 (intro)}
-During locomotion, the timing of strides across all limbs must be precise to maintain stability, and any motor errors, whether internal or external, must be flexibly compensated for. Internal errors are defined as those arising from motor noise, while external errors refer to unexpected changes in the environment (\dummyref{ref wolpert kawato}).
+During locomotion, the timing of strides across all limbs must be precise to maintain stability, and any motor errors, whether internal or external, must be flexibly compensated for. Internal errors are defined as those arising from motor noise, while external errors refer to unexpected changes in the environment \cite{wolpert_internal_1995}.
 
-Cerebellar lesions are known for resulting in movement ataxia, in which humans or animals' capability to produce well-timed, coordinated movements is impaired. Loss of function in the cerebellum matches what would be expected if the motor system could no longer estimate the sensorimotor consequences of motor commands (\textcolor{red}{Bastian ref}). More specifically, localized perturbation of Purkinje cells that project to a single cerebellar nucleus results in abolished learning of a locomotor paradigm without completely compromising the animals' ability to walk (\cite{darmohray_spatial_2019}). This and similar findings \dummyref{refs on Purkinje cell transient impairment} are consistent with the idea of Purkinje cells as cerebellar computational units, suggesting that they must process, and therefore encode limb-related signals. \textbf{This raises the question of what signals may the Purkinje cells receive and integrate to achieve coordination between multiple limbs}.
+Cerebellar lesions are known to result in movement ataxia, where the ability of humans or animals to produce well-timed, coordinated movements is impaired. This loss of function in the cerebellum aligns with the expectation that the motor system can no longer estimate the sensorimotor consequences of motor commands \cite{bastian_cerebellar_1996, bastian_learning_2006, machado_quantitative_2015}. Specifically, localized perturbation of Purkinje cells that project to a single cerebellar nucleus abolishes the learning of a locomotor paradigm without entirely compromising the animals' ability to walk \cite{darmohray_spatial_2019}. This and similar findings support the notion of Purkinje cells as the cerebellum's computational units, suggesting that they must process and encode limb-related signals (\dummyref{refs on Purkinje cell transient perturbation}). 
 
-Early electrophysiology-based studies have shown that Purkinje cell simple spike rates are modulated during the locomotor cycle in cats (\cite{udoSimpleComplexSpike1981, armstrongDischargesPurkinjeCells1984, smithSensorimotorcorrelatedDischargeRecorded1995}), and are sensitive to position and velocity in rats (\textcolor{red}{refs}) and mice (\textcolor{red}{refs}). 
-Studies in non-human primates have also recorded spikes from Purkinje cell firing during single arm reaching tasks. These cells have been observed to respond to preferred directions, velocities or combinations of both (\textcolor{red}{Coltz Ebner 1999 Monkey}).
+% \textbf{This raises the question of what signals Purkinje cells receive and integrate to achieve coordination between multiple limbs.}
+% \textbf{This raises the question of whether and how Purkinje cells combine signals from multiple limbs achieve coordination between multiple limbs.}
+\textbf{This raises the question of whether and how limbs may be represented in Purkinje cells.}
 
-By recording multiple neurons separately, studies have shown the variety of neural responses present in Purkinje cells. Tuning functions can be associated with different locomotor events, phase-shifts and can even contain more than one oscillation per locomotor cycle (\dummyref{raman pearson}).
+Early Purkinje cell recordings during locomotion have demonstrated that Purkinje cell simple spike rates are modulated during the stride cycle in cats, and are sensitive to position and velocity in rats and mice \cite{udoSimpleComplexSpike1981, armstrongDischargesPurkinjeCells1984, smithSensorimotorcorrelatedDischargeRecorded1995, sauerbreiStructuredVariabilityPurkinje2015}).
+\obs{missing some mouse refs}
+In non-human primates, Purkinje cell firing has been recorded during single arm reaching tasks, revealing responses to preferred directions, velocities, or combinations of both \cite{coltzCerebellarPurkinjeCell1999}.
+By recording multiple neurons separately, it has been shown that Purkinje cells exhibit a variety of neural responses. Their tuning functions can be associated with different locomotor events, phase-shifts, and even contain more than one oscillation per locomotor cycle \cite{sarnaikControlVoluntaryOptogenetically2018, muzzuEncodingLocomotionKinematics2018}.
 
 
+% There is, however, a knowledge gap in cerebellar encodin
 
 % \begin{tcolorbox}[title=Definition: Non-linear responses]
 %     Any non-monotonic response to a parameter, i.e., not accurately described by a straight line (\textcolor{red}{Coltz Ebner 1999 Monkey})
 % \end{tcolorbox}
 
-Moreover, a single DCN neuron receives input from \textcolor{red}{X} Purkinje cells. Given the convergence of Purkinje cells to nucleus neurons, one expects the DCN to perform some sort of readout from Purkinje cell populations. \textbf{Under what conditions could this readout be used for coordination?}
+Moreover, a single DCN neuron receives input from hundreds to thousands of Purkinje cells \cite{personSynchronyNeuralCoding2012}. Given the convergence of Purkinje cells to nucleus neurons, one expects the DCN to perform some sort of readout from Purkinje cell populations. 
 
-THERE'S A WHOLE PARAGRAPH MISSING ABOUT MIXED SELECTIVITY. WE ALSO NEED MORE INFORMATION ABOUT MOTOR ENCODING IN GENERAL IN PURKINJE CELLS
+\textbf{Under what conditions could this readout be used for coordination?}
 
-In this chapter, I describe an approach into studying how non-linear interactions between limbs may be useful for effcient downstream readouts by using a neural decoder method.
+Recent computational work has proposed the concept of \textit{mixed selectivity}. Neurons often contain representations of multiple features across a repertoire of behavioral tasks, yielding unclear single neuron tuning functions and high dimensional representations even at the level of single cells. The framework of mixed selectivity proposes that this might be an effective mechanism for efficient readouts of single variables from neural populations by downstream brain structures \cite{rigottiImportanceMixedSelectivity2013}. 
+Moreover, it's possible that a degree of non-linearity highlights specific combinations of task variables \cite{johnstonNonlinearMixedSelectivity2020}.
 
+In this chapter, I describe a neural decoder approach for studying how non-linear interactions between limbs may be useful for downstream readouts.
 
-
-
-
-
-
-
+%%                                                                           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
-\section{Results}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                           %%
+%%                           METHODS AND RESULTS                             %%
+%%                                                                           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Methods and Results}
+
+\subsection{Encoder: simulating a pseudo-population of Purkinje cells during common behavior}
+
+Ramirez, Marques et al.~conducted cell-attached patch clamp voltage recordings of individual Purkinje cells in the right cerebellar hemisphere during head-fixed mouse locomotion on a wheel. In this task, mice ran on a freely moving wheel and locomotor behavior was recorded for offline paw tracking.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.99\linewidth]{Chapters/Figures/chapter3/gam-methods.png}
+    \caption{Purkinje cells are modulated by multiple limbs. \textbf{A} Stride phases are extracted from positions for each paw by linearly interpolating between swing and stance events.}
+    \label{fig:gam-methods}
+\end{figure}
+\obs{Figure needs to be updated. B) should go out, A should become C, and A should be about preproc}
+
+Generalized additive models (GAMs) were used to infer tuning functions of each neuron to the different paws by decomposing firing rates into additive components modulated by each limb. Tuning functions were specified in a phase space defined between stance onset events for each paw. \textbf{Results show that most Purkinje cells are tuned to more than one limb, and some neurons are modulated by non-linear combinations of limb phases}\cite{ramirezburitica2024nonlinear}.
+
+Since the cerebellum is implicated in whole-body coordination, it is no surprise than multilimb representations arise in single Purkinje cells. Signals from multiple limbs should be integrated at some point in the circuit to achieve precise coordination. However, at the level of single Purkinje cells, it is hard to isolate single limb kinematics. We asked whether populations of Purkinje cells might employ an encoding mechanism akin to non-linear mixed selectivity to facilitate downstream kinematic readout by the DCN, something we presume would be useful in the context of coordination and locomotor learning.
+
+To test whether non-linear mixed selectivity would be useful in this context, we evaluated multiple kinematic readouts from Purkinje cell population firing. However, since each session yielded recordings for one neuron, we simulated firing rates for a pseudo-population during an example behavior segment. The firing rate of each neuron was defined as:
+\begin{gather}
+\label{eq:fr-paws}
+\text{Simulated FR} = r_0 + \sum_{p=1}^{4} r_{p} + r_{NLI}
+\intertext{\indent Where:}
+  \begin{tabular}{l c l}
+    \(r_{0}\)       & : & baseline firing rate  \\
+    \(r_{p}\)       & : & firing rate component due to paw \(p\) \\
+    \(r_{NLI}\)     & : & firing rate component due to non-linear interaction between paw phases \\
+  \end{tabular}\nonumber
+\end{gather}
+
+\(r_{0}\), \(r_{p}\) and \(r_{NLI}\) were estimated from the GAMs. Firing rates were estimated by applying the tuning function of each neuron to the paw phases during the example behavior segment (encoding), as depicted in \ref{fig:encdec}A.
+
+\begin{tcolorbox}
+Encoding: simulate firing rates from kinematics
+\end{tcolorbox}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=.6\linewidth]{Chapters//Figures//chapter3/encoderdecoder.png}
+    \caption{Enter Caption}
+    \label{fig:encdec}
+\end{figure}
+
+
+\subsection{Decoder: recovering paw positions and readout metrics}
+
+
+
 \subsection{Non-linearly mixed neural representations of multiple limbs improve kinematic decoding from pseudo-populations of Purkinje cells}.
-\section{Discussion}
-\section{Methods}
-\subsection{Animal model: wildtype mice}
-\subsection{Behavioral paradigm}
-\subsection{GAM analysis}
-\subsection{Encoder-Decoder approach for hypothesized downstream readouts}
 
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{Chapters//Figures//chapter3/encoderdecoder.png}
+    \caption{Enter Caption}
+    \label{fig:encdecccc}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                           %%
+%%                           DISCUSSION                                      %%
+%%                                                                           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Discussion}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                           %%
+%%                           METHODS SUPP                                    %%
+%%                                                                           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Methods supplement}
+% \subsection{Animal model: wildtype mice}
+% \subsection{Behavioral paradigm}
+% \subsection{GAM analysis}
+% 
+
+in bouts of 30 seconds. After this period, a mechanical brake would engage the wheel forcing the animal to stop for \textbf{\textcolor{red}{X}} seconds. Water rewards were given after \textbf{\textcolor{red}{Y}} meters of locomotion. Paw positions were estimated via markerless tracking on videos acquired at 330 fps from a combination of bottom view mirror and side positioned camera.
+
+Under this framework limb phases are extracted from limb positions by linearly interpolating 2 segments corresponding to swing and stance periods. The continuous phase for each paw is then binned into multiple basis functions (Figure \ref{fig:gam-methods}A).
 
 % \section{Purkinje cells encode multiple limbs}
 
 Mice move in a coordinated manner where diagonal limb pairs move together. When using traditional approaches such as event rasters, the resulting tuning functions are similar between two pairs of limbs (Figure \ref{fig:behavioral-correlations}).
 \obs{this should be made explicit in the introduction and here should be just a slight reminder}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=1\linewidth]{Chapters/Figures/chapter3/behavioral_correlations_in_fr.png}
-    \caption{Purkinje cells are modulated by multiple limbs. \textbf{A} Stride phases are extracted from positions for each paw by linearly interpolating between swing and stance events.}
-    \label{fig:behavioral-correlations}
-\end{figure}
-
 \par This aspect of locomotion poses a difficulty when isolating paw contributions to firing rate. Two correlated limbs will have similar tuning functions, and they will be in anti-phase relative to the homolateral pair.
 
 % \subsection{GAMs decompose firing rate into limb tuning}
 
-% ...........................................
-
-Marques, Ramirez et al.~have recently used generalized additive models (GAMs) as a way to disentangle the contributions of multiple correlated limb signals into their individual contributions \cite{ramirez-buriticaNonlinearMixedEncoding2024}.
-Under this framework, limb phases are extracted from limb positions by linearly interpolating 2 core segments corresponding to swing and stance periods. The continuous phase for each paw is then binned into multiple basis functions (Figure \ref{fig:gam-methods}A).
-
-
-To account for behavioral confounds metrics like tail angle, wheel speed, and body angle were included in the models. These can be binarized in similar manner to paw phases and included as regressors in a model of the following form: 
-
+Each basis function serves as a regressor in a generalized additive model (GAM). Organizing continuous variables into temporal basis sets allows decorrelating the contributions of highly correlated limb signals which would otherwise suffer from statistical instability \cite{ramirezburitica2024nonlinear}.
+GAMs take the following form:
 
 \begin{gather}
-\label{fig:behavioral-correlations}
+\label{eq:gam-eq}
 \text{Firing Rate} = \beta_0 + \sum_{i=1}^{N} \sum_{j=1}^{M} \beta_{i,j} \cdot \phi_{i,j} + \epsilon
 \intertext{\indent Where:}
   \begin{tabular}{l c l}
@@ -119,12 +194,10 @@ and a tuning function is the smoothed collection of \(\beta\) for all \(j\) (\re
 
 The outputs of the GAM are the coefficients organized in the phase space of each variable, i.e., partial dependency functions (PDPs), that can be interpreted as tuning functions (Figure \ref{fig:gam-methods}C), as well as the predicted firing rate.
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.9\linewidth]{example-image}
-    \caption{Purkinje cells are modulated by multiple limbs. \textbf{A} Stride phases are extracted from positions for each paw by linearly interpolating between swing and stance events.}
-    \label{fig:gam-methods}
-\end{figure}
+
+% ...........................................
+
+
 
 Ramirez et al.~fitted one GAM per recorded Purkinje cell
 
