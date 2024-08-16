@@ -84,7 +84,9 @@ In this chapter, I describe a neural decoder approach for studying how non-linea
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Methods and Results}
-
+%%.............................................................................
+%%                           ENCODER                                         ..
+%%.............................................................................
 \subsection{Encoder: simulating a pseudo-population of Purkinje cells during common behavior}
 
 Ramirez, Marques et al.~conducted cell-attached patch clamp voltage recordings of individual Purkinje cells in the right cerebellar hemisphere during head-fixed mouse locomotion on a wheel. In this task, mice ran on a freely moving wheel and locomotor behavior was recorded for offline paw tracking.
@@ -101,23 +103,28 @@ Generalized additive models (GAMs) were used to infer tuning functions of each n
 
 Since the cerebellum is implicated in whole-body coordination, it is no surprise than multilimb representations arise in single Purkinje cells. Signals from multiple limbs should be integrated at some point in the circuit to achieve precise coordination. However, at the level of single Purkinje cells, it is hard to isolate single limb kinematics. We asked whether populations of Purkinje cells might employ an encoding mechanism akin to non-linear mixed selectivity to facilitate downstream kinematic readout by the DCN, something we presume would be useful in the context of coordination and locomotor learning.
 
-To test whether non-linear mixed selectivity would be useful in this context, we evaluated multiple kinematic readouts from Purkinje cell population firing. However, since each session yielded recordings for one neuron, we simulated firing rates for a pseudo-population during an example behavior segment. The firing rate of each neuron was defined as:
+\textbf{To test whether non-linear mixed selectivity would be useful in this context, we estimated kinematic readouts, i.e., instantaneous paw positions, from populations of Purkinje cells with different number of neurons and varying degrees of non-linear interaction encoding.}
+
+Since each session yielded recordings for one neuron, we simulated firing rates for a pseudo-population during an example behavior segment. The firing rate \(r\) of each neuron over time was defined as:
 \begin{gather}
 \label{eq:fr-paws}
-\text{Simulated FR} = r_0 + \sum_{p=1}^{4} r_{p} + r_{NLI}
+\mathbf{r} = \mathbf{r}_0 + \sum_{p=1}^{4} \mathbf{r}_{p} + \gamma \mathbf{r}_{NLI}
 \intertext{\indent Where:}
-  \begin{tabular}{l c l}
-    \(r_{0}\)       & : & baseline firing rate  \\
-    \(r_{p}\)       & : & firing rate component due to paw \(p\) \\
-    \(r_{NLI}\)     & : & firing rate component due to non-linear interaction between paw phases \\
+  \begin{tabular}{l@{\ } l l}
+    \(\mathbf{r}_{0}\)      & \(\in \mathbb{R}\)        & :{\ } baseline firing rate  \\
+    \(\mathbf{r}_{p}\)      & \(\in \mathbb{R}^{t}\)    & :{\ } firing rate component due to the phase of paw \(p\) for \(t\) time points \\
+    \(\mathbf{r}_{NLI}\)    & \(\in \mathbb{R}^{t}\)    & :{\ } firing rate component due to non-linear interaction between paw phases \\
+    \(\gamma\)              & \(\in \mathbb{R}\)        & :{\ } amplitude of the non-linear interaction term \\
   \end{tabular}\nonumber
 \end{gather}
 
-\(r_{0}\), \(r_{p}\) and \(r_{NLI}\) were estimated from the GAMs. Firing rates were estimated by applying the tuning function of each neuron to the paw phases during the example behavior segment (encoding), as depicted in \ref{fig:encdec}A.
+\(r_{0}\), \(r_{p}\) and \(r_{NLI}\) were estimated from the GAMs. Firing rates were estimated by applying the tuning function of each neuron to the paw phases during the example behavior segment (encoding), as depicted in \ref{fig:encdec}A. 
 
-\begin{tcolorbox}
-Encoding: simulate firing rates from kinematics
-\end{tcolorbox}
+We can express the population firing rates as \(\mathbf{R}_{n, \gamma} \in \mathbb{R}^{t \times n}\). We varied the number of neurons from 1 to 90 and \(\gamma\) ranging from \(10^{-2}\) to \(5\). \(\gamma = 1\) corresponds to the experimentally derived amount of non-linear interactions.
+
+% \begin{tcolorbox}
+% Encoding: simulate firing rates from kinematics
+% \end{tcolorbox}
 
 \begin{figure}[h!]
     \centering
@@ -126,19 +133,57 @@ Encoding: simulate firing rates from kinematics
     \label{fig:encdec}
 \end{figure}
 
-
+%%.............................................................................
+%%                           DECODER                                         ..
+%%.............................................................................
 \subsection{Decoder: recovering paw positions and readout metrics}
 
+Next we decoded paw positions from the pseudo-population of simulated Purkinje cell firings. Neural decoding is used in this context to explore how well kinematics information encoded in Purkinje cells could be read out by the downstream DCN. For an in-depth review of interpretable neural decoding, see Glaser and Kording \cite{glaserMachineLearningNeural2020}. We used a multilinear regression model of the following form:
 
+\begin{gather}
+\label{eq:decoder}
+\mathbf{K}_{n, \gamma} = \beta_{n, \gamma} \mathbf{R}_{n, \gamma}
+\intertext{\indent Where:}
+  \begin{tabular}{l@{\ } l l}
+    \(\mathbf{K}\)  & \(\in \mathbb{R}^{t\times 4}\) & :{\ } paw positions along the axes of locomotion\\
+    \(\mathbf{R}\)  & \(\in \mathbb{R}^{t\times n}\) & :{\ } firing rates of n neurons  \\
+    \(\beta\)       & \(\in \mathbb{R}^{n\times 4}\) & :{\ } model coefficients  \\
+  \end{tabular}\nonumber
+\end{gather}
 
+%  - refer that we evalue in a test set and get R2 as a performance metric
+%  - expand the equation into its terms (isolate interaction term)
+% - near future: include uniform gamma instead of proportional to the amplitude in each neuron
+%  MISSING CLEAR HYPOTHESIS
+
+\(\beta\) were estimated via ridge regression. The regularization parameter was optimized for a subset of data and set to the optimal value (0.001) for all simulations. As a decoding performance metric, we computed the coefficient of determination \(R^{2}\) for an unseen test set (\textcolor{red}{train/test = 80\%/20\%}). \(\mathbf{K}\) has 4 predicted variables corresponding to the 4 paws so we we define a compound \(R^{2}\) as:
+\begin{gather}
+\label{eq:decoder}
+\mathbf{R}^{2}_{interlimb} = \frac{\sum_{p}^{4} RSS_{p}}{\sum_{p}^{4} TSS_{p}}
+\intertext{\indent Where:}
+  \begin{tabular}{l@{\ } l l}
+    \(\mathbf{RSS_{p}}\)  & \(\in \mathbb{R}\) & :{\ } residual sum of squares for paw \(p\) \\
+    \(\mathbf{TSS_{p}}\)  & \(\in \mathbb{R}\) & :{\ } total sum of squares for paw \(p\) \\
+  \end{tabular}\nonumber
+\end{gather}
+
+%%.............................................................................
+%%                           NON LINEAR                                      ..
+%%.............................................................................
 \subsection{Non-linearly mixed neural representations of multiple limbs improve kinematic decoding from pseudo-populations of Purkinje cells}.
+
+- compare the first two columns with any amount of non-linear modulation / interaction
+- mention the line for significance 
+- be transparent about the highly skewed colorbar
+
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=1\linewidth]{Chapters//Figures//chapter3/encoderdecoder.png}
+    \includegraphics[width=1\linewidth]{Chapters//Figures//chapter3/r2_results.png}
     \caption{Enter Caption}
     \label{fig:encdecccc}
 \end{figure}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -148,6 +193,14 @@ Encoding: simulate firing rates from kinematics
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Discussion}
+
+- results from encoder decoder suggest that a kinematics readouts from populations of purkinje cells benefit essencially from any amount of interactions between paw phases.
+
+- show that this was found in other tasks
+
+- posit this as a possible mechanism to signal particular combinations of limbs, which might be useful for the dcn to identify particular body states
+
+[FUUUUUUTURE:] compute GAMs on my own purkinje cells and mossy fibers, commment on any differences
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%                                                                           %%
